@@ -5,13 +5,15 @@
 
 
 from selenium import webdriver
+# 設定Chrome Driver位置
 driver = webdriver.Chrome('C:/Users/Lee CHIENWEI/AppData/Local/Programs/Python/Python38-32/Scripts/chromedriver.exe')
+# 打開Chrome Driver
 driver.get('http://www.kuman5.com/20454/1133682.html')
 
 
 # In[51]:
 
-
+# 模擬下拉頁面
 for _ in range(20):
     import time
     time.sleep(1)
@@ -20,14 +22,14 @@ for _ in range(20):
 
 # In[52]:
 
-
+# 解析頁面
 from bs4 import BeautifulSoup
 soup = BeautifulSoup(driver.page_source, 'html.parser')
 
 
 # In[53]:
 
-
+# 解析圖片網址
 import re
 soup.find_all(src=lambda src: src and re.compile(r"^https://p.pstatp.com/origin").search(src))
 
