@@ -1,0 +1,7 @@
+from selenium import webdriver
+driver = webdriver.Chrome('C:/Users/AppData/Local/Programs/Python/Python38-32/Scripts/chromedriver.exe')
+driver.get('http://www.kuman5.com/20454/1133682.html')
+from bs4 import BeautifulSoup
+soup = BeautifulSoup(driver.page_source, 'html')
+soup.select_one('#comicimg').get('src')
+'https://p.pstatp.com/origin/fe540001c4d477e250a5'
