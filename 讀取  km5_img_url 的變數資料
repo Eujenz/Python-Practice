@@ -1,0 +1,26 @@
+#感謝 Python Taiwan Jimmy Chang 提供教學，這邊要再研究
+
+import re
+import base64
+import json
+import requests
+
+r = requests.get('http://www.kuman5.com/20454/1133682.html')
+
+# 讀取  km5_img_url 的變數資料
+match = re.compile(r"km5_img_url='([^']*)'").search(r.text)
+img_url_base64 = match.group(1)
+
+# 將變數解回原始資料
+data_str = base64.b64decode(img_url_base64)
+data = json.loads(data_str)
+
+urls = []
+
+for d in data:
+    #  分割 index & url
+    index, url = d.split('|', 1)
+    if url:
+        urls.append(url.strip())
+
+print(urls)
